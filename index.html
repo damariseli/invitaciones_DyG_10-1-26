@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>¡Nos Casamos!</title>
+  <meta name="description" content="Invitación de casamiento: información, mapa, dress code, lista de regalos, fotos y confirmación de asistencia." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #faf7f5;      --text: #2a2a2a;     --muted: #6b6b6b;
+      --brand: #b98c6d;   --brand-2:#5b6b6f;  --card:#ffffff;
+      --ring: rgba(185,140,109,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;}
+    h1,h2,h3{font-family:"Playfair Display",serif;margin:0 0 .5rem}
+    a{color:var(--brand)}
+    .container{max-width:1000px;margin:0 auto;padding:24px}
+    .card{background:var(--card);border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.05);padding:24px}
+    header.hero{position:relative;isolation:isolate;padding:48px 0 24px;background:linear-gradient(180deg, #fff 0%, #fff6 30%, transparent 100%)}
+    .hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+    .tag{display:inline-block;background:#00000008;border:1px solid #00000010;padding:6px 10px;border-radius:999px;color:var(--muted);font-size:.9rem}
+    .title{font-size:clamp(36px,5vw,58px);line-height:1.05}
+    .subtitle{color:var(--muted);margin-top:.25rem}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .btn{appearance:none;border:0;border-radius:12px;padding:12px 16px;font-weight:600;cursor:pointer}
+    .btn.brand{background:var(--brand);color:white}
+    .btn.ghost{background:#0000;border:1px solid #00000022;color:var(--text)}
+    .grid{display:grid;gap:18px}
+    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .section{margin:28px 0}
+    .list{padding-left:18px;color:var(--muted)}
+    .timeline{display:grid;gap:10px;color:var(--muted)}
+    .item{display:grid;grid-template-columns:120px 1fr;gap:12px}
+    iframe{border:0;border-radius:12px;width:100%;min-height:320px}
+    form label{font-weight:600;display:block;margin:.25rem 0}
+    input,select,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #e7e2df;background:white;box-shadow:0 0 0 0 transparent;outline:none}
+    input:focus,select:focus,textarea:focus{box-shadow:0 0 0 4px var(--ring)}
+    .foot{color:var(--muted);text-align:center;margin:26px 0 50px}
+    .pill{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:999px;background:#f0f4f6;border:1px solid #d9e0e3;color:#314046}
+
+    @media (max-width:860px){
+      .hero-inner{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+      .item{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container hero-inner">
+      <div>
+        <span class="tag">¡Estás invitad@!</span>
+        <h1 class="title">Nombre &amp; Nombre</h1>
+        <p class="subtitle">Nos casamos y queremos celebrarlo contigo.</p>
+        <div class="cta-row">
+          <a class="btn brand" href="#rsvp">Confirmar asistencia</a>
+          <a class="btn ghost" href="#info">Ver detalles</a>
+        </div>
+        <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+          <span class="pill" title="Fecha"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 2v3M17 2v3M3 9h18M5 5h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" stroke="#5b6b6f" stroke-width="2"/></svg> 12 • Diciembre • 2025</span>
+          <span class="pill" title="Hora"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 8v5l3 2" stroke="#5b6b6f" stroke-width="2"/><circle cx="12" cy="12" r="9" stroke="#5b6b6f" stroke-width="2"/></svg> 19:00 h</span>
+          <span class="pill" title="Ubicación"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z" stroke="#5b6b6f" stroke-width="2"/><circle cx="12" cy="10" r="2.5" stroke="#5b6b6f" stroke-width="2"/></svg> Salón Ejemplo</span>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <h2 style="margin-bottom:.25rem">Mapa del evento</h2>
+          <p class="subtitle">Reemplaza el <em>src</em> del iframe por el enlace de tu Google Maps.</p>
+          <!-- 📌 Reemplaza el src por tu mapa embebido de Google Maps -->
+          <iframe title="Mapa del evento" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.943239390057!2d-58.444!3d-34.629!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDM3JzQ0LjQiUyA1OMKwMjYnMzguNCJX!5e0!3m2!1ses-419!2sar!4v00000000000"></iframe>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" id="info">
+    <section class="section grid grid-2">
+      <div class="card">
+        <h2>Programa</h2>
+        <div class="timeline" aria-label="Cronograma del evento">
+          <div class="item"><strong>18:30</strong><span>Recepción de invitados</span></div>
+          <div class="item"><strong>19:00</strong><span>Ceremonia</span></div>
+          <div class="item"><strong>20:00</strong><span>Brindis y fotos</span></div>
+          <div class="item"><strong>21:00</strong><span>Cena y fiesta 🎉</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Dress code</h2>
+        <p class="subtitle">Elegante sport en paleta neutra (beige, arena, negro, blanco). Evitar total blanco.</p>
+        <ul class="list">
+          <li>Recomendado: telas livianas y calzado cómodo para bailar.</li>
+          <li>Clima: espacio semi cubierto al aire libre.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section grid grid-2">
+      <div class="card">
+        <h2>Lista de regalos</h2>
+        <p class="subtitle">Puedes consultar nuestra lista y aportar con lo que desees.</p>
+        <!-- 🔗 Reemplaza href por el enlace real a tu lista de regalos -->
+        <p><a class="btn brand" href="https://example.com/lista-de-regalos" target="_blank" rel="noopener">Abrir lista de regalos</a></p>
+      </div>
+      <div class="card">
+        <h2>Fotos &amp; videos</h2>
+        <p class="subtitle">Comparte tus recuerdos subiéndolos a nuestra carpeta.</p>
+        <!-- 🔗 Reemplaza href por el enlace real a tu Google Drive/Dropbox para subir archivos -->
+        <p><a class="btn ghost" href="https://drive.google.com/drive/folders/XXXXXXXX" target="_blank" rel="noopener">Subir fotos / videos</a></p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card" id="rsvp">
+        <h2>Confirmación de asistencia (RSVP)</h2>
+        <p class="subtitle">Por favor, completa tus datos. Si tienes restricciones alimentarias, indícalas.</p>
+        <form id="rsvpForm">
+          <div class="grid grid-2">
+            <div>
+              <label for="nombre">Nombre</label>
+              <input id="nombre" name="nombre" autocomplete="given-name" required />
+            </div>
+            <div>
+              <label for="apellido">Apellido</label>
+              <input id="apellido" name="apellido" autocomplete="family-name" required />
+            </div>
+          </div>
+          <div class="grid grid-2" style="margin-top:12px">
+            <div>
+              <label for="asistencia">¿Asistirás?</label>
+              <select id="asistencia" name="asistencia" required>
+                <option value="">Selecciona…</option>
+                <option value="Sí">Sí</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+            <div>
+              <label for="restriccion">Restricción alimentaria (opcional)</label>
+              <input id="restriccion" name="restriccion" placeholder="Ej.: vegetariana, celiaquía, sin lactosa" />
+            </div>
+          </div>
+          <div style="margin-top:12px">
+            <label for="mensaje">Mensaje para los novios (opcional)</label>
+            <textarea id="mensaje" name="mensaje" rows="3" placeholder="¡Te queremos!"></textarea>
+          </div>
+          <div class="cta-row" style="margin-top:16px">
+            <button class="btn brand" type="submit">Enviar confirmación</button>
+            <button class="btn ghost" type="button" id="downloadCsv">Descargar como CSV</button>
+          </div>
+          <p class="subtitle" style="margin-top:10px">💡 Esta versión guarda localmente y te permite descargar un CSV para que lo subas/compartas. Puedes conectar un endpoint (Formspree/Google Forms) editando el código.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="container">
+      <small>Hecho con ♥ — Listo para publicar en GitHub Pages</small>
+    </div>
+  </footer>
+
+  <script>
+    // --- RSVP: almacenamiento local + descarga CSV + envio opcional a endpoint ---
+    const form = document.getElementById('rsvpForm');
+
+    // Cambia esta URL si quieres enviar a un servicio (p. ej. Formspree, Google Apps Script)
+    const ENDPOINT_URL = '';
+
+    function getStored(){
+      try{ return JSON.parse(localStorage.getItem('rsvp_list')||'[]'); }catch{ return [] }
+    }
+    function setStored(list){ localStorage.setItem('rsvp_list', JSON.stringify(list)); }
+
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      data.timestamp = new Date().toISOString();
+
+      // 1) Guardar local
+      const list = getStored();
+      list.push(data); setStored(list);
+
+      // 2) Intento de envío a endpoint opcional (si está configurado)
+      let sentOK = false, serverMsg = '';
+      if(ENDPOINT_URL){
+        try{
+          const res = await fetch(ENDPOINT_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) });
+          sentOK = res.ok; serverMsg = res.status + ' ' + res.statusText;
+        }catch(err){ serverMsg = String(err); }
+      }
+
+      // 3) Fallback por mailto (abre el cliente de correo del invitado)
+      if(!sentOK && !ENDPOINT_URL){
+        const subject = encodeURIComponent('RSVP Casamiento');
+        const body = encodeURIComponent(`Nombre: ${data.nombre}\nApellido: ${data.apellido}\nAsistencia: ${data.asistencia}\nRestricción: ${data.restriccion||'-'}\nMensaje: ${data.mensaje||'-'}\nFecha: ${new Date().toLocaleString()}`);
+        window.location.href = `mailto:novios@correo.com?subject=${subject}&body=${body}`;
+      }
+
+      alert('¡Gracias! Tu confirmación fue registrada' + (sentOK? ' y enviada ✔️':' ✔️')); 
+      form.reset();
+    });
+
+    // Descargar CSV con todas las respuestas guardadas localmente
+    document.getElementById('downloadCsv').addEventListener('click', ()=>{
+      const rows = getStored();
+      if(!rows.length){ alert('No hay respuestas aún.'); return; }
+      const headers = ['timestamp','nombre','apellido','asistencia','restriccion','mensaje'];
+      const csv = [headers.join(',')].concat(rows.map(r => headers.map(h => `"${(r[h]||'').replaceAll('"','""')}"`).join(','))).join('\n');
+      const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'rsvp.csv'; a.click();
+      URL.revokeObjectURL(url);
+    });
+  </script>
+
+  <!--
+  ──────────────────────────────────────────────────────────────────────────────
+  📦 Instrucciones rápidas
+  1) Reemplaza los textos (nombres, fecha, horario y salón).
+  2) Mapa: en Google Maps > Compartir > Insertar un mapa > copia el <iframe> y pega su src.
+  3) Lista de regalos: reemplaza el href por tu enlace real.
+  4) Fotos/Videos: reemplaza el href por tu carpeta de Drive/Dropbox.
+  5) Correo mailto: cambia novios@correo.com por tu email.
+  6) Si quieres recibir el formulario en línea:
+     - Opción A (rápida): crea un formulario en Formspree o FormSubmit y coloca su URL en ENDPOINT_URL.
+     - Opción B (Google Sheets): crea un Apps Script como webhook y pega la URL en ENDPOINT_URL.
+  7) Publicar en GitHub Pages:
+     - Crea un repositorio, sube este archivo como index.html en la raíz.
+     - En Settings > Pages, selecciona main / root y guarda. Espera a que se publique.
+  ──────────────────────────────────────────────────────────────────────────────
+  -->
+</body>
+</html>
