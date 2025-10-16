@@ -21,4 +21,4 @@ Settings → Pages → Deploy from branch → main
 
 
 ## 📍 Créditos
-Diseño creado por [Lucía Vázquez ❤️ Mateo], 2026.
+Diseño creado por [Dámaris ❤️ Gabriel], 2026.
