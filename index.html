@@ -234,4 +234,20 @@
   ──────────────────────────────────────────────────────────────────────────────
   -->
 </body>
+
+<script>
+  // --- Mostrar botón "Descargar CSV" solo si hay clave admin ---
+  const params = new URLSearchParams(window.location.search);
+  const adminKey = params.get("admin");
+
+  // Cambia esta clave por la tuya
+  const CLAVE_SECRETA = "12345";
+
+  if (adminKey === CLAVE_SECRETA) {
+    const btn = document.getElementById("downloadCsv");
+    if (btn) btn.style.display = "inline-block";
+  }
+</script>
+
+  
 </html>
