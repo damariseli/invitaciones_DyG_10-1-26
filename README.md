@@ -17,3 +17,8 @@ Este es un sitio web simple y elegante creado para compartir la información del
 
 ## 🚀 Publicación
 Subí este proyecto a un repositorio en GitHub y activá **GitHub Pages** desde:
+Settings → Pages → Deploy from branch → main
+
+
+## 📍 Créditos
+Diseño creado por [Lucía Vázquez ❤️ Mateo], 2026.
