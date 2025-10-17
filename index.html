@@ -156,7 +156,7 @@
 
   <script>
     const form = document.getElementById('rsvpForm');
-    const ENDPOINT_URL = 'https://formsubmit.co/tucorreo@gmail.com';
+    const ENDPOINT_URL = ' ';
 
     function getStored(){try{return JSON.parse(localStorage.getItem('rsvp_list')||'[]')}catch{return []}}
     function setStored(list){localStorage.setItem('rsvp_list',JSON.stringify(list))}
@@ -179,18 +179,6 @@
       const url=URL.createObjectURL(blob);
       const a=document.createElement('a');
       a.href=url;a.download='rsvp.csv';a.click();URL.revokeObjectURL(url);
-
-      
-    });
-
-    // --- Mostrar botón solo si hay clave secreta ---
-    const params = new URLSearchParams(window.location.search);
-    const adminKey = params.get('admin');
-    const CLAVE_SECRETA = '12345'; // cambia esto
-    if (adminKey === CLAVE_SECRETA) {
-      const btn = document.getElementById('downloadCsv');
-      if (btn) btn.style.display = 'inline-block';
-    }
   
   </script>
       
@@ -212,6 +200,18 @@
         alert("❌ Ocurrió un error al enviar el formulario. Intenta más tarde.");
       }
     });
+
+     });
+
+    // --- Mostrar botón solo si hay clave secreta ---
+    const params = new URLSearchParams(window.location.search);
+    const adminKey = params.get('admin');
+    const CLAVE_SECRETA = '12345'; // cambia esto
+    if (adminKey === CLAVE_SECRETA) {
+      const btn = document.getElementById('downloadCsv');
+      if (btn) btn.style.display = 'inline-block';
+    }
+    
   </script>
 
 </body>
