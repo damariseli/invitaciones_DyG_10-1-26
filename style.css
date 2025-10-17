@@ -105,3 +105,12 @@ footer {
   margin-top: 2em;
 }
 
+.flor-esquina {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 140px;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+}
