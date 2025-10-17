@@ -179,6 +179,31 @@
       const url=URL.createObjectURL(blob);
       const a=document.createElement('a');
       a.href=url;a.download='rsvp.csv';a.click();URL.revokeObjectURL(url);
+
+            // Countdown
+      const cdEls = { d: document.getElementById('cd-d'), h: document.getElementById('cd-h'), m: document.getElementById('cd-m'), s: document.getElementById('cd-s') };
+      setInterval(() => {
+      const now = new Date();
+      const diff = Math.max(0, (dt - now));
+      const s = Math.floor(diff / 1000);
+      const d = Math.floor(s / (3600*24));
+      const h = Math.floor((s % (3600*24)) / 3600);
+      const m = Math.floor((s % 3600) / 60);
+      const ss = s % 60;
+      cdEls.d.textContent = pad(d); cdEls.h.textContent = pad(h); cdEls.m.textContent = pad(m); cdEls.s.textContent = pad(ss);
+      }, 1000);
+      
+      
+      // .ICS (Agregar al calendario)
+      document.getElementById('btn-ical').addEventListener('click', () => {
+      const dtStart = formatICSDate(dt);
+      const dtEnd = formatICSDate(new Date(dt.getTime() + 4 * 3600 * 1000)); // +4hs aprox
+      const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Casamiento//ES\nBEGIN:VEVENT\nUID:${cryptoRandom()}\nDTSTAMP:${formatICSDate(new Date())}\nDTSTART:${dtStart}\nDTEND:${dtEnd}\nSUMMARY:Casamiento ${CONFIG.novios}\nLOCATION:${escapeICS(CONFIG.lugar)} - ${escapeICS(CONFIG.direccion)} - ${escapeICS(CONFIG.ciudadPais)}\nDESCRIPTION:Casamiento ${CONFIG.novios}\nEND:VEVENT\nEND:VCALENDAR`;
+      const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'casamiento.ics'; a.click();
+      URL.revokeObjectURL(url);
       
     });
 
