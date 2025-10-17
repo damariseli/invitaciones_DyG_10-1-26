@@ -156,7 +156,7 @@
 
   <script>
     const form = document.getElementById('rsvpForm');
-    const ENDPOINT_URL = '';
+    const ENDPOINT_URL = 'https://formsubmit.co/tucorreo@gmail.com';
 
     function getStored(){try{return JSON.parse(localStorage.getItem('rsvp_list')||'[]')}catch{return []}}
     function setStored(list){localStorage.setItem('rsvp_list',JSON.stringify(list))}
@@ -191,6 +191,27 @@
       const btn = document.getElementById('downloadCsv');
       if (btn) btn.style.display = 'inline-block';
     }
+
+      <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    emailjs.init("3N20muwjzcolKStQY"); // Por ejemplo: emailjs.init("BxE9g8Hxxxxx");
+  
+    const form = document.getElementById("rsvpForm");
+  
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+  
+      try {
+        await emailjs.sendForm("service_3exflyy", "template_6qunc5y", form);
+        alert("💌 ¡Gracias! Tu confirmación fue enviada correctamente.");
+        form.reset();
+      } catch (error) {
+        console.error("Error al enviar:", error);
+        alert("❌ Ocurrió un error al enviar el formulario. Intenta más tarde.");
+      }
+    });
+  </script>
+
   </script>
 </body>
 </html>
