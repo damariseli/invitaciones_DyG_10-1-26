@@ -21,6 +21,4 @@ document.getElementById("rsvpForm").addEventListener("submit", function(event) {
   document.getElementById("mensaje").innerText = mensaje;
   document.getElementById("rsvpForm").reset();
 
-}
-
 });
