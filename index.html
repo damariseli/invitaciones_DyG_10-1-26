@@ -154,24 +154,45 @@
     </div>
   </footer>
 
-    <!-- Scripts -->
-  <!-- Librería EmailJS -->
+     <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <script>
-    // Inicializar EmailJS con tu clave pública
-    emailjs.init("3N20muwjzcolKStQY"); // tu public key
+    // Inicializar EmailJS con tu Public Key
+    emailjs.init("3N20muwjzcolKStQY"); // 👈 reemplaza si cambia tu clave
 
-    const form = document.getElementById('rsvpForm');
-    const downloadBtn = document.getElementById('downloadCsv');
+    const form = document.getElementById("rsvpForm");
+    const downloadBtn = document.getElementById("downloadCsv");
 
-    // Envío por EmailJS
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
+    // --- Envío del formulario + validación + mensaje personalizado ---
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const nombre = document.getElementById("nombre").value.trim();
+      const apellido = document.getElementById("apellido").value.trim();
+      const restriccion = document.getElementById("restriccion").value.trim();
+      const asistencia = document.getElementById("asistencia").value;
+
+      // Validación de campos obligatorios
+      if (!nombre || !apellido || !asistencia) {
+        alert("Por favor, completá todos los campos obligatorios.");
+        return;
+      }
 
       try {
+        // Enviar con EmailJS
         await emailjs.sendForm("service_3exflyy", "template_6qunc5y", form);
-        alert("💌 ¡Gracias! Tu confirmación fue enviada correctamente.");
+
+        // Mostrar mensaje personalizado
+        const mensaje = `
+💌 ¡Gracias, ${nombre} ${apellido}!
+${asistencia === "Sí"
+  ? "✨ ¡Nos alegra que vengas a celebrar con nosotros! 💕"
+  : "😢 Lamentamos que no puedas venir, igual te tendremos presente 💖"}
+${restriccion ? `\n🥗 Restricción alimentaria: ${restriccion}` : ""}
+        `;
+
+        alert(mensaje);
         form.reset();
       } catch (error) {
         console.error("Error al enviar:", error);
@@ -179,33 +200,36 @@
       }
     });
 
-    // --- Mostrar botón solo si hay clave secreta ---
+    // --- Mostrar botón CSV solo si hay clave secreta ---
     const params = new URLSearchParams(window.location.search);
-    const adminKey = params.get('admin');
-    const CLAVE_SECRETA = '12345'; // cambia esto a algo tuyo
+    const adminKey = params.get("admin");
+    const CLAVE_SECRETA = "12345"; // 🔐 cámbiala si querés otra clave
+
     if (adminKey === CLAVE_SECRETA) {
-      downloadBtn.style.display = 'inline-block';
+      downloadBtn.style.display = "inline-block";
     }
 
-    // --- Generar descarga CSV solo si es admin ---
-    downloadBtn.addEventListener('click', () => {
-      const stored = JSON.parse(localStorage.getItem('rsvp_list') || '[]');
+    // --- Generar descarga CSV solo visible para admin ---
+    downloadBtn.addEventListener("click", () => {
+      const stored = JSON.parse(localStorage.getItem("rsvp_list") || "[]");
       if (!stored.length) {
-        alert('No hay respuestas aún.');
+        alert("No hay respuestas aún.");
         return;
       }
-      const headers = ['timestamp','nombre','apellido','asistencia','restriccion','mensaje'];
-      const csv = [headers.join(',')]
-        .concat(stored.map(r =>
-          headers.map(h => `"${(r[h] || '').replaceAll('"', '""')}"`).join(',')
-        ))
-        .join('\n');
+      const headers = ["timestamp","nombre","apellido","asistencia","restriccion","mensaje"];
+      const csv = [headers.join(",")]
+        .concat(
+          stored.map((r) =>
+            headers.map((h) => `"${(r[h] || "").replaceAll('"', '""')}"`).join(",")
+          )
+        )
+        .join("\n");
 
-      const blob = new Blob([csv], {type: 'text/csv;charset=utf-8;'});
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
       const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
+      const a = document.createElement("a");
       a.href = url;
-      a.download = 'rsvp.csv';
+      a.download = "rsvp.csv";
       a.click();
       URL.revokeObjectURL(url);
     });
