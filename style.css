@@ -2,47 +2,45 @@
   display: none;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Open+Sans:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Open+Sans&display=swap');
 
 :root {
-  --brand: #7d8064;        /* verde oliva principal */
-  --brand-dark: #5f624d;   /* verde oliva más oscuro */
-  --accent: #e8c8c5;       /* rosa viejo de acento */
-  --bg: #fffdf8;           /* fondo marfil */
-  --text: #3a362f;         /* marrón cálido */
+  --brand: #f6d7d9;     /* rosa suave */
+  --brand-dark: #f0b3b6; /* rosa más fuerte */
+  --text: #5a2a2a;      /* marrón rojizo */
+  --bg: #fff8f9;        /* fondo general */
 }
 
 /* --- Base general --- */
 body {
   font-family: 'Open Sans', sans-serif;
   background-color: var(--bg);
-  color: var(--text);
+  color: #333;
   margin: 0;
   padding: 0;
   text-align: center;
 }
 
 header {
-  background: var(--brand);
+  background-color: var(--brand);
   padding: 2em;
-  color: #fff;
-  border-bottom: 3px solid var(--brand-dark);
+  color: var(--text);
+  border-bottom: 4px solid var(--brand-dark);
 }
 
-h1, h2 {
+h1 {
   font-family: 'Playfair Display', serif;
-  color: var(--brand-dark);
-  margin-bottom: 0.4em;
+  font-size: 2.5em;
+  margin-bottom: 0.2em;
 }
 
 section {
   padding: 2em 1em;
-  margin: 1.5em auto;
-  max-width: 700px;
+  margin: 1em auto;
+  max-width: 600px;
   background: #fff;
   border-radius: 15px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  border: 1px solid rgba(93,96,76,0.25); /* leve borde oliva */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 /* --- Unificación de botones --- */
@@ -55,15 +53,15 @@ a.btn, button.btn, .boton, button, a.boton {
   line-height: 1.2;
   text-decoration: none;
   text-align: center;
-  padding: 12px 24px;
+  padding: 10px 20px;
   border-radius: 10px;
-  font-weight: 600;
+  font-weight: bold;
   cursor: pointer;
-  transition: all 0.25s ease-in-out;
-  margin-top: 10px;
   background-color: var(--brand);
-  color: #fff;
-  border: 1px solid var(--brand-dark);
+  color: var(--text);
+  border: none;
+  transition: all 0.2s ease-in-out;
+  margin-top: 10px;
 }
 
 a.btn:hover,
@@ -71,89 +69,39 @@ button.btn:hover,
 .boton:hover,
 button:hover {
   background-color: var(--brand-dark);
-  color: #fff;
-  transform: translateY(-1px);
 }
 
-/* --- Botón secundario tipo “ghost” --- */
+/* --- Botón con borde transparente (opcional tipo “ghost”) --- */
 .btn.ghost {
   background: transparent;
   border: 1px solid var(--brand-dark);
-  color: var(--brand-dark);
+  color: var(--text);
 }
 .btn.ghost:hover {
-  background: rgba(125,128,100,0.1);
+  background: #fff2f3;
 }
 
-/* --- Formularios --- */
+/* --- Campos del formulario --- */
 form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-top: 20px;
+  gap: 10px;
+  margin-top: 15px;
 }
 
 input, select, textarea {
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   border-radius: 8px;
   font-family: inherit;
   font-size: 1rem;
 }
 
-input:focus, select:focus, textarea:focus {
-  outline: none;
-  border-color: var(--brand);
-  box-shadow: 0 0 4px rgba(125,128,100,0.4);
-}
-
-/* --- Links y acentos --- */
-a {
-  color: var(--brand);
-  text-decoration: none;
-}
-a:hover {
-  color: var(--accent);
-}
-
 /* --- Pie de página --- */
 footer {
   background-color: var(--brand);
-  color: #fff;
+  color: var(--text);
   padding: 1em;
-  margin-top: 3em;
-  border-top: 3px solid var(--brand-dark);
-}
-
-/* --- Decoración floral opcional --- */
-.decoracion-flores {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 120px;
-  opacity: 0.35;
-  pointer-events: none;
-}
-.decoracion-flores-derecha {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 120px;
-  opacity: 0.35;
-  pointer-events: none;
-}
-
-/* --- Responsivo --- */
-@media (max-width: 700px) {
-  section {
-    margin: 1em;
-    padding: 1.5em 1em;
-  }
-
-  .decoracion-flores,
-  .decoracion-flores-derecha {
-    width: 80px;
-    opacity: 0.25;
-  }
+  margin-top: 2em;
 }
 
