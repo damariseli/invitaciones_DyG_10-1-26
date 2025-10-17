@@ -2,83 +2,79 @@
   display: none;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Open+Sans:wght@400;500&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Open+Sans&display=swap');
+:root {
+  --brand: #e8c8c5;       /* rosa viejo */
+  --brand-dark: #d6a4a1;   /* rosa más profundo */
+  --olive: #8a8b6f;        /* verde oliva suave */
+  --bg: #fffdf8;           /* fondo marfil */
+  --text: #4a3f36;         /* marrón cálido */
+}
 
+/* --- Base general --- */
 body {
   font-family: 'Open Sans', sans-serif;
-  background-color: #fff8f9;
-  color: #333;
+  background-color: var(--bg);
+  color: var(--text);
   margin: 0;
   padding: 0;
   text-align: center;
 }
 
 header {
-  background-color: #f6d7d9;
+  background: var(--brand);
   padding: 2em;
-  color: #5a2a2a;
-  border-bottom: 4px solid #f0b3b6;
+  color: var(--text);
+  border-bottom: 3px solid var(--brand-dark);
 }
 
-h1 {
+h1, h2 {
   font-family: 'Playfair Display', serif;
-  font-size: 2.5em;
-  margin-bottom: 0.2em;
+  color: var(--text);
 }
 
+/* --- Secciones y tarjetas --- */
 section {
   padding: 2em 1em;
-  margin: 1em auto;
-  max-width: 600px;
+  margin: 1.5em auto;
+  max-width: 700px;
   background: #fff;
   border-radius: 15px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  border: 1px solid rgba(138,139,111,0.25); /* toque oliva */
 }
 
-.boton {
-  display: inline-block;
-  background-color: #f6d7d9;
-  color: #5a2a2a;
-  padding: 10px 20px;
-  border-radius: 10px;
+/* --- Botones unificados --- */
+a.btn, button.btn, .boton, button, a.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.2;
   text-decoration: none;
-  font-weight: bold;
-  margin-top: 10px;
-}
-
-.boton:hover {
-  background-color: #f0b3b6;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-input, select {
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-}
-
-button {
-  background-color: #f6d7d9;
-  border: none;
-  padding: 10px;
-  border-radius: 8px;
+  text-align: center;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  margin-top: 10px;
+  background-color: var(--brand);
+  color: var(--text);
+  border: 1px solid var(--olive);
 }
 
+a.btn:hover,
+button.btn:hover,
+.boton:hover,
 button:hover {
-  background-color: #f0b3b6;
+  background-color: var(--olive);
+  color: #fff;
 }
 
-footer {
-  background-color: #f6d7d9;
-  color: #5a2a2a;
-  padding: 1em;
-  margin-top: 2em;
-}
+/* Botón secundario */
+.btn.ghost {
+  background: transparent;
+  border: 1px solid var(--brand-d
