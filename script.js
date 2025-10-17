@@ -21,9 +21,6 @@ document.getElementById("rsvpForm").addEventListener("submit", function(event) {
   document.getElementById("mensaje").innerText = mensaje;
   document.getElementById("rsvpForm").reset();
 
-  const clave = prompt("Introduce la clave de administrador:");
-if (clave === "MiClaveSuperSegura_2025!") {
-  document.getElementById("downloadCsv").style.display = "inline-block";
 }
 
 });
