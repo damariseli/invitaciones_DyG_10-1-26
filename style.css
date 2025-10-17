@@ -20,6 +20,13 @@ body {
   padding: 0;
   text-align: center;
 }
+header.hero {
+  background:
+    url("flor.png") no-repeat top left,        /* flor en esquina */
+    linear-gradient(180deg, #fff 0%, #fff6 30%, transparent 100%);
+  background-size: 180px auto, auto;           /* tamaño de la flor */
+  background-position: top 10px left 10px;     /* margen desde los bordes */
+}
 
 header {
   background-color: var(--brand);
