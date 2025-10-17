@@ -56,7 +56,7 @@
       <div>
         <span class="tag">¡Estás invitad@!</span>
         <h1 class="title">Gabriel &amp; Dámaris</h1>
-        <p class="subtitle">Nos casamos y queremos celebrarlo con vos. </p>
+        <p class="subtitle">Nos casamos y queremos celebrarlo con vos ♥ </p>
         <div class="cta-row">
           <a class="btn brand" href="#rsvp">Confirmar asistencia</a>
           <a class="btn ghost" href="#info">Ver detalles</a>
@@ -79,7 +79,7 @@
   <main class="container" id="info">
     <section class="section grid grid-2">
       <div class="card">
-        <h2>Programa</h2>
+        <h2>Agenda</h2>
         <div class="timeline" aria-label="Cronograma del evento">
           <div class="item"><strong>19:30</strong><span>Recepción de invitados</span></div>
           <div class="item"><strong>20:00</strong><span>Ceremonia</span></div>
@@ -150,7 +150,7 @@
 
   <footer class="foot">
     <div class="container">
-      <small>Hecho con ♥ — Listo para publicar en GitHub Pages</small>
+      <small>Hecho con ♥ — 📍 Créditos: Diseño creado por Dámaris & Gabriel, 2025.</small>
     </div>
   </footer>
 
@@ -179,6 +179,13 @@
       const url=URL.createObjectURL(blob);
       const a=document.createElement('a');
       a.href=url;a.download='rsvp.csv';a.click();URL.revokeObjectURL(url);
+
+      if(!sentOK && !ENDPOINT_URL){
+        const subject = encodeURIComponent('RSVP Casamiento');
+        const body = encodeURIComponent(`Nombre: ${data.nombre}\nApellido: ${data.apellido}\nAsistencia: ${data.asistencia}\nRestricción: ${data.restriccion||'-'}\nMensaje: ${data.mensaje||'-'}\nFecha: ${new Date().toLocaleString()}`);
+        window.location.href = `mailto:novios@correo.com?subject=${subject}&body=${body}`;
+      }
+      
     });
 
     // --- Mostrar botón solo si hay clave secreta ---
