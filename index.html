@@ -154,43 +154,21 @@
     </div>
   </footer>
 
+    <!-- Scripts -->
+  <!-- Librería EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
   <script>
+    // Inicializar EmailJS con tu clave pública
+    emailjs.init("3N20muwjzcolKStQY"); // tu public key
+
     const form = document.getElementById('rsvpForm');
-    const ENDPOINT_URL = ' ';
+    const downloadBtn = document.getElementById('downloadCsv');
 
-    function getStored(){try{return JSON.parse(localStorage.getItem('rsvp_list')||'[]')}catch{return []}}
-    function setStored(list){localStorage.setItem('rsvp_list',JSON.stringify(list))}
-
-    form.addEventListener('submit',async e=>{
+    // Envío por EmailJS
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const data = Object.fromEntries(new FormData(form).entries());
-      data.timestamp=new Date().toISOString();
-      const list=getStored();list.push(data);setStored(list);
-      alert('¡Gracias! Tu confirmación fue registrada ✔️');
-      form.reset();
-    });
 
-    document.getElementById('downloadCsv').addEventListener('click',()=>{
-      const rows=getStored();
-      if(!rows.length){alert('No hay respuestas aún.');return;}
-      const headers=['timestamp','nombre','apellido','asistencia','restriccion','mensaje'];
-      const csv=[headers.join(',')].concat(rows.map(r=>headers.map(h=>`"${(r[h]||'').replaceAll('"','""')}"`).join(','))).join('\n');
-      const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
-      const url=URL.createObjectURL(blob);
-      const a=document.createElement('a');
-      a.href=url;a.download='rsvp.csv';a.click();URL.revokeObjectURL(url);
-  
-  </script>
-      
-      <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script>
-    emailjs.init("3N20muwjzcolKStQY"); // Por ejemplo: emailjs.init("BxE9g8Hxxxxx");
-  
-    const form = document.getElementById("rsvpForm");
-  
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-  
       try {
         await emailjs.sendForm("service_3exflyy", "template_6qunc5y", form);
         alert("💌 ¡Gracias! Tu confirmación fue enviada correctamente.");
@@ -201,18 +179,37 @@
       }
     });
 
-     });
-
     // --- Mostrar botón solo si hay clave secreta ---
     const params = new URLSearchParams(window.location.search);
     const adminKey = params.get('admin');
-    const CLAVE_SECRETA = '12345'; // cambia esto
+    const CLAVE_SECRETA = '12345'; // cambia esto a algo tuyo
     if (adminKey === CLAVE_SECRETA) {
-      const btn = document.getElementById('downloadCsv');
-      if (btn) btn.style.display = 'inline-block';
+      downloadBtn.style.display = 'inline-block';
     }
-    
-  </script>
 
+    // --- Generar descarga CSV solo si es admin ---
+    downloadBtn.addEventListener('click', () => {
+      const stored = JSON.parse(localStorage.getItem('rsvp_list') || '[]');
+      if (!stored.length) {
+        alert('No hay respuestas aún.');
+        return;
+      }
+      const headers = ['timestamp','nombre','apellido','asistencia','restriccion','mensaje'];
+      const csv = [headers.join(',')]
+        .concat(stored.map(r =>
+          headers.map(h => `"${(r[h] || '').replaceAll('"', '""')}"`).join(',')
+        ))
+        .join('\n');
+
+      const blob = new Blob([csv], {type: 'text/csv;charset=utf-8;'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'rsvp.csv';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  </script>
 </body>
 </html>
+
